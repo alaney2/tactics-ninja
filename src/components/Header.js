@@ -19,6 +19,7 @@ class Header extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
               <Nav.Link href="#solve">Solve Puzzles</Nav.Link>
+              <Nav.Link href="#solve">Stockfish Engine</Nav.Link>
               <Nav.Link href="#changelog">Changelog</Nav.Link>
               <NavDropdown title="Help" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/question">Ask a Question</NavDropdown.Item>
@@ -28,7 +29,7 @@ class Header extends React.Component {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          
+
           <Form inline>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-success">Search</Button>
