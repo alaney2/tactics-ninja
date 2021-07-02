@@ -19,7 +19,7 @@ class Header extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
               <Nav.Link href="#solve">Solve Puzzles</Nav.Link>
-              <Nav.Link href="#solve">Analyze</Nav.Link>
+              <Nav.Link href="#analyze">Analyze</Nav.Link>
               <Nav.Link href="#changelog">Changelog</Nav.Link>
               <NavDropdown title="Help" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/question">Ask a Question</NavDropdown.Item>
