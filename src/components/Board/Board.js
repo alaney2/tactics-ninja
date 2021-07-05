@@ -34,7 +34,7 @@ function Board(props) {
       //     setFen(chess.fen());
       //   }
       // }, 300);
-
+      console.log(chess.pgn());
       setFen(chess.fen());
     }
   };
@@ -43,7 +43,7 @@ function Board(props) {
     <div className="chessBoard">
       <ChessBoard
         width={750}
-        position={fen}
+        position="start"
         onDrop={(move) => handleMove({
           from: move.sourceSquare,
           to: move.targetSquare,
