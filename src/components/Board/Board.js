@@ -25,15 +25,15 @@ function Board(props) {
 
   const handleMove = (move) => {
     if (chess.move(move)) {
-      setTimeout(() => {
-        const moves = chess.moves();
+      // setTimeout(() => {
+      //   const moves = chess.moves();
 
-        if (moves.length > 0) {
-          const computerMove = moves[Math.floor(Math.random() * moves.length)];
-          chess.move(computerMove);
-          setFen(chess.fen());
-        }
-      }, 300);
+      //   if (moves.length > 0) {
+      //     const computerMove = moves[Math.floor(Math.random() * moves.length)];
+      //     chess.move(computerMove);
+      //     setFen(chess.fen());
+      //   }
+      // }, 300);
 
       setFen(chess.fen());
     }
