@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ChessBoard from 'chessboardjsx';
+import MoveHistory from '../MoveHistory/MoveHistory';
 import wP from '../../resources/wP.svg';
 import wR from '../../resources/wR.svg';
 import wN from '../../resources/wN.svg';
@@ -13,11 +14,22 @@ import bB from '../../resources/bB.svg';
 import bQ from '../../resources/bQ.svg';
 import bK from '../../resources/bK.svg';
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+
 function CustomBoard(props) {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
   return (
     <div className="customBoard">
       <ChessBoard
-        width={750}
+        width={getWindowDimensions().width > 700 ? 700 : getWindowDimensions().width}
         position={props.position}
         onDrop={props.onDrop}
         onMouseOverSquare={props.onMouseOverSquare}
@@ -154,6 +166,7 @@ function CustomBoard(props) {
         lightSquareStyle={{ backgroundColor: "Gray" }}
         darkSquareStyle={{ backgroundColor: "Black" }}
       />
+      <MoveHistory moveHistory={props.moveHistory} />
     </div>
   );
 }

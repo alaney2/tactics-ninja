@@ -4,7 +4,6 @@ import './Board.css';
 
 import CustomBoard from '../CustomBoard/CustomBoard';
 
-
 // import { Chess } from "chess.js";
 const Chess = require('chess.js');
 
@@ -41,7 +40,7 @@ class FreePlay extends React.Component {
     // currently clicked square
     square: "",
     // array of past game moves
-    history: []
+    history: [],
   };
 
   componentDidMount() {
@@ -83,6 +82,7 @@ class FreePlay extends React.Component {
   };
 
   onDrop = ({ sourceSquare, targetSquare }) => {
+    console.log(this.game.pgn({ max_width: 5, newline_char: '<br />' }));
     // see if the move is legal
     let move = this.game.move({
       from: sourceSquare,
@@ -169,13 +169,15 @@ class FreePlay extends React.Component {
     });
   };
 
-  onSquareRightClick = square =>
+  onSquareRightClick = square => {
     this.setState({
       squareStyles: { [square]: { backgroundColor: "deepPink" } }
     });
+  }
 
   render() {
     const { fen, dropSquareStyle, squareStyles } = this.state;
+    const pgn = this.game ? this.game.pgn({ max_width: 5, newline_char: '<br />' }) : '';
 
     return this.props.children({
       squareStyles,
@@ -187,6 +189,7 @@ class FreePlay extends React.Component {
       onDragOverSquare: this.onDragOverSquare,
       onSquareClick: this.onSquareClick,
       onSquareRightClick: this.onSquareRightClick,
+      moveHistory: pgn,
     });
   }
 
@@ -207,6 +210,7 @@ function Board(props) {
           onSquareClick,
           onSquareRightClick,
           onPieceClick,
+          moveHistory,
         }) => (
           <CustomBoard
             position={position}
@@ -223,7 +227,8 @@ function Board(props) {
             onSquareClick={onSquareClick}
             onSquareRightClick={onSquareRightClick}
             onPieceClick={onPieceClick}
-            sparePieces={true} 
+            sparePieces={true}
+            moveHistory={moveHistory}
           />
         )}
       </FreePlay>
