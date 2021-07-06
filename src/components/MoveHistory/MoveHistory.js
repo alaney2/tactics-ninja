@@ -1,10 +1,11 @@
 import React from 'react';
+import './MoveHistory.css';
 
 function MoveHistory(props) {
   return (
     <div className="moves">
-      <h1>Moves: </h1>
-      <p>{props.moves}</p>
+      <h2>Moves: </h2>
+      <p>{props.moveHistory}</p>
     </div>
   )
 }

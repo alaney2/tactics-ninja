@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ChessBoard from 'chessboardjsx';
 import MoveHistory from '../MoveHistory/MoveHistory';
+import './CustomBoard.css';
 import wP from '../../resources/wP.svg';
 import wR from '../../resources/wR.svg';
 import wN from '../../resources/wN.svg';
@@ -24,8 +25,6 @@ function getWindowDimensions() {
 
 
 function CustomBoard(props) {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
   return (
     <div className="customBoard">
       <ChessBoard

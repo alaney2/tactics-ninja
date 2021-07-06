@@ -177,7 +177,7 @@ class FreePlay extends React.Component {
 
   render() {
     const { fen, dropSquareStyle, squareStyles } = this.state;
-    const pgn = this.game ? this.game.pgn({ max_width: 5, newline_char: '<br />' }) : '';
+    const pgn = this.game ? this.game.pgn({ max_width: 5, newline_char: ' ' }) : '';
 
     return this.props.children({
       squareStyles,
