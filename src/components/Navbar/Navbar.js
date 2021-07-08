@@ -7,31 +7,28 @@ import {
 } from "react-router-dom";
 import Changelog from '../Changelog/Changelog';
 import Board from '../Board/Board';
+import Solve from '../Solve/Solve';
+import './Navbar.css';
 
 function Navbar(props) {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">TACTICS NINJA</Link>
-            </li>
-            <li>
-              <Link to="/solve">Solve</Link>
-            </li>
-            <li>
-              <Link to="/analyze">Analyze</Link>
-            </li>
-            <li>
-              <Link to="/changelog">Changelog</Link>
-            </li>
-          </ul>
+        <nav className="container">
+          <Link to="/" className="Home">TACTICS NINJA</Link>
+          <div className="Links">
+          <Link to="/solve" className="Link">Solve</Link>
+          <Link to="/analyze" className="Link">Analyze</Link>
+          <Link to="/changelog" className="Link">Changelog</Link>
+          </div>
         </nav>
 
         <Switch>
           <Route path="/changelog">
             <Changelog />
+          </Route>
+          <Route path="/solve">
+            <Solve />
           </Route>
           <Route path="/">
             <Board />

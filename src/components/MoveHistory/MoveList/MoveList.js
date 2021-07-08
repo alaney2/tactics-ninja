@@ -3,7 +3,7 @@ import './MoveList.css';
 
 function Move(props) {
   return (
-    <p>{props.move}</p>
+    <p className="Move">{props.move}</p>
   )
 }
 

@@ -29,7 +29,7 @@ function CustomBoard(props) {
       <div className="chessBoard">
       <ChessBoard
         // width={getWindowDimensions().width > 700 ? 700 : getWindowDimensions().width}
-        width={getWindowDimensions().width * 2 / 5}
+        width={getWindowDimensions().width > 480 ? getWindowDimensions().width * 2 / 5 : getWindowDimensions().width}
         position={props.position}
         onDrop={props.onDrop}
         onMouseOverSquare={props.onMouseOverSquare}
@@ -44,8 +44,8 @@ function CustomBoard(props) {
           wP: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={wP}
               alt={"white pawn"}
@@ -54,8 +54,8 @@ function CustomBoard(props) {
           wR: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={wR}
               alt={"white rook"}
@@ -64,8 +64,8 @@ function CustomBoard(props) {
           wN: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={wN}
               alt={"white knight"}
@@ -74,8 +74,8 @@ function CustomBoard(props) {
           wB: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={wB}
               alt={"white bishop"}
@@ -84,8 +84,8 @@ function CustomBoard(props) {
           wQ: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={wQ}
               alt={"white queen"}
@@ -94,8 +94,8 @@ function CustomBoard(props) {
           wK: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={wK}
               alt={"white king"}
@@ -104,8 +104,8 @@ function CustomBoard(props) {
           bP: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={bP}
               alt={"black pawn"}
@@ -114,8 +114,8 @@ function CustomBoard(props) {
           bR: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={bR}
               alt={"black rook"}
@@ -124,8 +124,8 @@ function CustomBoard(props) {
           bN: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={bN}
               alt={"black knight"}
@@ -134,8 +134,8 @@ function CustomBoard(props) {
           bB: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={bB}
               alt={"black bishop"}
@@ -144,8 +144,8 @@ function CustomBoard(props) {
           bQ: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={bQ}
               alt={"black queen"}
@@ -154,8 +154,8 @@ function CustomBoard(props) {
           bK: ({ squareWidth, isDragging }) => (
             <img
               style={{
-                width: isDragging ? squareWidth * 1.2 : squareWidth,
-                height: isDragging ? squareWidth * 1.2 : squareWidth
+                width: isDragging ? squareWidth : squareWidth,
+                height: isDragging ? squareWidth : squareWidth
               }}
               src={bK}
               alt={"black king"}
