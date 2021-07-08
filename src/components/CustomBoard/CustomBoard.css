@@ -1,10 +1,16 @@
 .customBoard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  /* height: 100%; */
-  flex-shrink: 1;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 1fr;
+  gap: 2em;
+  height: 100%;
   background-color: #282c34;
+}
+
+.chessBoard {
+  grid-column: 2 / span 1;
+}
+
+.moveHistory {
+  grid-column: 3 / span 1;
+  outline-style: solid;
 }

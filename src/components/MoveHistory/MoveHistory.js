@@ -1,11 +1,11 @@
 import React from 'react';
 import './MoveHistory.css';
+import MoveList from './MoveList/MoveList';
 
 function MoveHistory(props) {
   return (
     <div className="moves">
-      <h2>Moves: </h2>
-      <p>{props.moveHistory}</p>
+      <MoveList moves={props.moveHistory}/>
     </div>
   )
 }

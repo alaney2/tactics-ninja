@@ -23,12 +23,13 @@ function getWindowDimensions() {
   };
 }
 
-
 function CustomBoard(props) {
   return (
     <div className="customBoard">
+      <div className="chessBoard">
       <ChessBoard
-        width={getWindowDimensions().width > 700 ? 700 : getWindowDimensions().width}
+        // width={getWindowDimensions().width > 700 ? 700 : getWindowDimensions().width}
+        width={getWindowDimensions().width * 2 / 5}
         position={props.position}
         onDrop={props.onDrop}
         onMouseOverSquare={props.onMouseOverSquare}
@@ -165,7 +166,10 @@ function CustomBoard(props) {
         lightSquareStyle={{ backgroundColor: "Gray" }}
         darkSquareStyle={{ backgroundColor: "Black" }}
       />
-      <MoveHistory moveHistory={props.moveHistory} />
+      </div>
+      <div className="moveHistory">
+        <MoveHistory moveHistory={props.moveHistory} />
+      </div>
     </div>
   );
 }

@@ -82,7 +82,6 @@ class FreePlay extends React.Component {
   };
 
   onDrop = ({ sourceSquare, targetSquare }) => {
-    console.log(this.game.pgn({ max_width: 5, newline_char: '<br />' }));
     // see if the move is legal
     let move = this.game.move({
       from: sourceSquare,
@@ -177,7 +176,7 @@ class FreePlay extends React.Component {
 
   render() {
     const { fen, dropSquareStyle, squareStyles } = this.state;
-    const pgn = this.game ? this.game.pgn({ max_width: 5, newline_char: ' ' }) : '';
+    const history = this.game ? this.game.pgn().split(' ') : [];
 
     return this.props.children({
       squareStyles,
@@ -189,7 +188,7 @@ class FreePlay extends React.Component {
       onDragOverSquare: this.onDragOverSquare,
       onSquareClick: this.onSquareClick,
       onSquareRightClick: this.onSquareRightClick,
-      moveHistory: pgn,
+      moveHistory: history,
     });
   }
 
@@ -197,7 +196,7 @@ class FreePlay extends React.Component {
 
 function Board(props) {
   return (
-    <div>
+    <div className="Board">
       <FreePlay>
       {({
           position,
