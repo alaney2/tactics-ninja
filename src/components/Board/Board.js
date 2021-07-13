@@ -130,7 +130,6 @@ class FreePlay extends React.Component {
   };
 
   onSquareClick = square => {
-    console.log(square)
     // get list of possible moves for this square
     let moves = this.game.moves({
       square: square,
@@ -236,4 +235,3 @@ function Board(props) {
 }
 
 export default Board;
-
