@@ -1,11 +1,10 @@
 import './App.css';
-// import Header from '../components/Header/Header';
-import Navbar from '../components/Navbar/Navbar';
-// import Board from '../components/Board/Board';
+import Navbar from '../components/Navbar';
+// import Board from '../components/Board';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-custom">
       <header>
         <Navbar />
       </header>

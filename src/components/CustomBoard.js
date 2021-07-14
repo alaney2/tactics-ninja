@@ -1,19 +1,18 @@
 import React from 'react';
 import ChessBoard from 'chessboardjsx';
-import MoveHistory from '../MoveHistory/MoveHistory';
-import './CustomBoard.css';
-import wP from '../../resources/wP.svg';
-import wR from '../../resources/wR.svg';
-import wN from '../../resources/wN.svg';
-import wB from '../../resources/wB.svg';
-import wQ from '../../resources/wQ.svg';
-import wK from '../../resources/wK.svg';
-import bP from '../../resources/bP.svg';
-import bR from '../../resources/bP.svg';
-import bN from '../../resources/bN.svg';
-import bB from '../../resources/bB.svg';
-import bQ from '../../resources/bQ.svg';
-import bK from '../../resources/bK.svg';
+import MoveHistory from './MoveHistory';
+import wP from '../resources/wP.svg';
+import wR from '../resources/wR.svg';
+import wN from '../resources/wN.svg';
+import wB from '../resources/wB.svg';
+import wQ from '../resources/wQ.svg';
+import wK from '../resources/wK.svg';
+import bP from '../resources/bP.svg';
+import bR from '../resources/bP.svg';
+import bN from '../resources/bN.svg';
+import bB from '../resources/bB.svg';
+import bQ from '../resources/bQ.svg';
+import bK from '../resources/bK.svg';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;

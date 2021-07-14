@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .bg-custom {
+    background-color: #282c34;
+    height: 100vh;
+  }
+}

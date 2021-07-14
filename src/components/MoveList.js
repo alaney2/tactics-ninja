@@ -1,5 +1,4 @@
 import React from 'react';
-import './MoveList.css';
 
 function Move(props) {
   return (

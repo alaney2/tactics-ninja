@@ -1,5 +1,4 @@
 import React from 'react';
-import './Changelog.css';
 
 function Changelog(props) {
   return (

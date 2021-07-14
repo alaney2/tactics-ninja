@@ -1,6 +1,5 @@
 import React from 'react';
-import './MoveHistory.css';
-import MoveList from './MoveList/MoveList';
+import MoveList from './MoveList';
 
 function MoveHistory(props) {
   return (
