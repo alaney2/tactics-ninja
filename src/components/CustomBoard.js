@@ -14,21 +14,15 @@ import bB from '../resources/bB.svg';
 import bQ from '../resources/bQ.svg';
 import bK from '../resources/bK.svg';
 
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-}
-
 function CustomBoard(props) {
   return (
     <div className="customBoard">
       <div className="chessBoard">
       <ChessBoard
-        // width={getWindowDimensions().width > 700 ? 700 : getWindowDimensions().width}
-        width={getWindowDimensions().width > 480 ? getWindowDimensions().width * 2 / 5 : getWindowDimensions().width}
+        sparePieces={props.sparePieces}
+        lightSquareStyle={{ backgroundColor: "Gray" }}
+        darkSquareStyle={{ backgroundColor: "Black" }}
+        width={props.width}
         position={props.position}
         onDrop={props.onDrop}
         onMouseOverSquare={props.onMouseOverSquare}
@@ -161,14 +155,11 @@ function CustomBoard(props) {
             />
           ),
         }}
-        sparePieces={props.sparePieces}
-        lightSquareStyle={{ backgroundColor: "Gray" }}
-        darkSquareStyle={{ backgroundColor: "Black" }}
       />
       </div>
-      <div className="moveHistory">
+      {/* <div className="moveHistory">
         <MoveHistory moveHistory={props.moveHistory} />
-      </div>
+      </div> */}
     </div>
   );
 }

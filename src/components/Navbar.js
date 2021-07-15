@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import Play from './Play';
+import Analyze from './Analyze';
 import Changelog from './Changelog';
 import Board from './Board';
 import Solve from './Solve';
@@ -37,8 +38,11 @@ function Navbar(props) {
           <Route path="/solve">
             <Solve />
           </Route>
+          <Route path="analyze">
+            <Analyze />
+          </Route>
           <Route path="/">
-            <Board />
+            <Analyze />
           </Route>
         </Switch>
       </div>
