@@ -8,7 +8,7 @@ import {
 import Play from './Play';
 import Analyze from './Analyze';
 import Changelog from './Changelog';
-import Board from './Board';
+// import Board from './Board';
 import Solve from './Solve';
 
 function Navbar(props) {

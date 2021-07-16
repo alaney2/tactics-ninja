@@ -1,6 +1,6 @@
 import React from 'react';
 import ChessBoard from 'chessboardjsx';
-import MoveHistory from './MoveHistory';
+// import MoveHistory from './MoveHistory';
 import wP from '../resources/wP.svg';
 import wR from '../resources/wR.svg';
 import wN from '../resources/wN.svg';

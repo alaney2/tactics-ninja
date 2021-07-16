@@ -1,5 +1,5 @@
 import Board from './Board';
-import Chessboard from 'chessboardjsx';
+// import Chessboard from 'chessboardjsx';
 
 function Play() {
   return <div>

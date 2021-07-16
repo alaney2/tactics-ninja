@@ -1,5 +1,5 @@
 import CustomBoard from './CustomBoard';
-import Chessboard from 'chessboardjsx';
+// import Chessboard from 'chessboardjsx';
 import React, { useState } from 'react';
 const Chess = require("chess.js");
 
