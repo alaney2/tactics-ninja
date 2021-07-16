@@ -15,16 +15,16 @@ function Navbar(props) {
   return (
     <Router>
       <div>
-        <nav className="text-sm flex py-8 flex-shrink justify-evenly items-center text-alice-blue">
+        <nav className="text-sm flex py-8 flex-shrink justify-evenly items-cente">
           <div className="sm:text-2xl italic font-extrabold">
             <Link to="/">TACTICS NINJA</Link>
           </div>
 
-          <div className="sm:text-xl flex space-x-3 items-center hover:text-red-100">
-            <Link to="/play">Play</Link>
-            <Link to="/solve">Solve</Link>
-            <Link to="/analyze" >Analyze</Link>
-            <Link to="/changelog">Changelog</Link>
+          <div className="sm:text-xl flex space-x-3 items-center">
+            <Link to="/play" className="hover:text-pink-300">Play</Link>
+            <Link to="/solve" className="hover:text-pink-300">Solve</Link>
+            <Link to="/analyze" className="hover:text-pink-300">Analyze</Link>
+            <Link to="/changelog" className="hover:text-pink-300">Changelog</Link>
           </div>
         </nav>
 

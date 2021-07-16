@@ -1,19 +1,9 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
-
 module.exports = {
-  mode: 'jit',
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    textColor: {
-      'primary': '#eef8ff',
-    },
     extend: {
-      colors: {
-        primary: '#eef8ff',
-        'alice-blue': '#eef8ff',
-      }
+      colors: {},
     },
   },
   variants: {
