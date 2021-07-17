@@ -111,7 +111,7 @@ function Board(props) {
       />
     </div>
 
-    {props.moves && width > 1024 && <div className="lg:w-2/12">
+    {props.moves && width > 1024 && <div className="lg:w-3/12 2xl:w-2/12 lg:mx-4">
       <p className="absolute w-full lg:w-2/12 p-3 md:p-2 m-4 text-center lg:text-left"> Warm up your chess skills against this beginner level computer.</p>
       <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
         <h1 className="px-2 mx-4 text-2xl">Moves</h1>
@@ -119,7 +119,7 @@ function Board(props) {
       </div>
     </div>}
 
-    {props.sparePieces && <div className="text-center lg:text-left lg:w-2/12">
+    {props.sparePieces && <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4">
         <button className="p-2 m-8 rounded-lg bg-pink-400" style={calculateMarginStyle()}>Calculate best move</button>
     </div>}
   </div>;
