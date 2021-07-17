@@ -32,7 +32,7 @@ export function calculateBoardWidth() {
 }
 
 function Board(props) {
-  const [chess, setChess] = useState(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'));
+  const [chess] = useState(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'));
   const [fen, setFen] = useState(chess.fen());
 
   const handleMove = (move) => {
@@ -59,21 +59,21 @@ function Board(props) {
     })
   };
 
-  const clearBoard = () => {
-    setChess(chess => {
-      chess.clear();
-      return chess;
-    });
-    setFen('8/8/8/8/8/8/8/8 w - - 0 1');
-  }
+  // const clearBoard = () => {
+  //   setChess(chess => {
+  //     chess.clear();
+  //     return chess;
+  //   });
+  //   setFen('8/8/8/8/8/8/8/8 w - - 0 1');
+  // }
 
-  const newBoard = () => {
-    setChess(chess => {
-      chess.reset();
-      return chess;
-    });
-    setFen('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-  }
+  // const newBoard = () => {
+  //   setChess(chess => {
+  //     chess.reset();
+  //     return chess;
+  //   });
+  //   setFen('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+  // }
 
   const margin = calculateBoardWidth() / 8;
   
