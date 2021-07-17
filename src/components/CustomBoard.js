@@ -16,8 +16,8 @@ import bK from '../resources/bK.svg';
 
 function CustomBoard(props) {
   return (
-    <div className="customBoard">
-      <div className="chessBoard">
+    <div>
+      <div>
       <ChessBoard
         sparePieces={props.sparePieces}
         dropOffBoard={props.dropOffBoard}

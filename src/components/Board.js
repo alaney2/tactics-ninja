@@ -1,6 +1,8 @@
 import CustomBoard from './CustomBoard';
 import React, { useState } from 'react';
 import MoveHistory from './MoveHistory';
+import './styles.css';
+
 const Chess = require("chess.js");
 
 function getWindowDimensions() {
@@ -14,7 +16,11 @@ function getWindowDimensions() {
 export function calculateBoardWidth() {
   const width = getWindowDimensions().width;
   const height = getWindowDimensions().height;
+  const smallBreakpoint = 640;
   if (width > height) {
+    if (height < smallBreakpoint) {
+      return height / 2;
+    }
     return height * 3 / 5;
   } else {
     return width * 4 / 5;
@@ -22,8 +28,7 @@ export function calculateBoardWidth() {
 }
 
 function Board(props) {
-  const [chess] = useState(new Chess());
-
+  const [chess, setChess] = useState(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'));
   const [fen, setFen] = useState(chess.fen());
 
   const handleMove = (move) => {
@@ -50,16 +55,55 @@ function Board(props) {
     })
   };
 
-  return <div className="flex w-screen justify-center items-center">
-    <CustomBoard
-      width={calculateBoardWidth()}
-      position={fen}
-      onDrop={props.freePlay ? undefined : onDrop}
-      sparePieces={props.sparePieces}
-      dropOffBoard={props.dropOffBoard}
-    />
-    {props.moves && <MoveHistory moveHistory={chess.pgn().split(' ')} />}
+  const clearBoard = () => {
+    setChess(chess => {
+      chess.clear();
+      return chess;
+    });
+    setFen('8/8/8/8/8/8/8/8 w - - 0 1');
+  }
+
+  const newBoard = () => {
+    setChess(chess => {
+      chess.reset();
+      return chess;
+    });
+    setFen('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+  }
+
+  const margin = calculateBoardWidth() / 8;
+  const marginStyle = {
+    marginTop: margin, 
+  }
+
+  const heightStyle = {
+    marginTop: calculateBoardWidth() / 2,
+    height: calculateBoardWidth() / 2,
+  }
+
+  return <div className="flex justify-center">
+    <div className="">
+      <CustomBoard
+        width={calculateBoardWidth()}
+        position={fen}
+        onDrop={props.sparePieces ? undefined : onDrop}
+        sparePieces={props.sparePieces}
+        dropOffBoard={props.dropOffBoard}
+      />
+    </div>
+
+    {props.moves && <div className="w-2/12">
+      <p className="absolute w-2/12 p-2 mx-4"> Warm up your chess skills against this beginner level computer.</p>
+      <div className="scrollbar overflow-y-scroll" style={heightStyle}>
+        <h1 className="px-2 mx-4 text-2xl">Moves</h1>
+        <MoveHistory moveHistory={chess.pgn().split(' ')} />
+      </div>
+    </div>}
+
+    {props.sparePieces && <div className="w-2/12">
+        <button className="p-2 mx-8 rounded-lg bg-pink-400" style={marginStyle}>Calculate best move</button>
+    </div>}
   </div>;
 }
 
-export default Board
+export default Board;
