@@ -11,6 +11,18 @@ function getWindowDimensions() {
   };
 }
 
+function calculateBoardWidth() {
+  const width = getWindowDimensions().width;
+  const height = getWindowDimensions().height;
+  if (width > height) {
+    return height * 2 / 3;
+  } else {
+    return width * 2 / 3;
+  }
+
+  return getWindowDimensions().width > 648 ? getWindowDimensions().width * 2 / 5 : getWindowDimensions().width;
+}
+
 function Board(props) {
   const [chess] = useState(
     new Chess("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -44,7 +56,7 @@ function Board(props) {
 
   return <div className="flex w-screen justify-center items-center">
     <CustomBoard
-      width={getWindowDimensions().width > 648 ? getWindowDimensions().width * 2 / 5 : getWindowDimensions().width}
+      width={calculateBoardWidth()}
       position={fen}
       onDrop={props.freePlay ? undefined : onDrop}
       sparePieces={props.sparePieces}
