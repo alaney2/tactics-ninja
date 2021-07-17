@@ -13,17 +13,21 @@ function getWindowDimensions() {
   };
 }
 
+const width = getWindowDimensions().width;
+const height = getWindowDimensions().height;
+
 export function calculateBoardWidth() {
-  const width = getWindowDimensions().width;
-  const height = getWindowDimensions().height;
   const smallBreakpoint = 640;
   if (width > height) {
-    if (height < smallBreakpoint) {
+    if (height <= smallBreakpoint) {
       return height / 2;
     }
     return height * 3 / 5;
   } else {
-    return width * 4 / 5;
+    if (width <= smallBreakpoint) {
+      return width;
+    }
+    return width * 3 / 5;
   }
 }
 
@@ -72,8 +76,23 @@ function Board(props) {
   }
 
   const margin = calculateBoardWidth() / 8;
+  
+  const calculateMarginStyle = () => {
+    if (width >= 1024) {
+      return marginStyle;
+    }
+    return {};
+  }
+
   const marginStyle = {
-    marginTop: margin, 
+    marginTop: margin * 2, 
+  }
+
+  const calculateHeightStyle = () => {
+    if (width >= 1024) {
+      return heightStyle;
+    }
+    return {};
   }
 
   const heightStyle = {
@@ -81,8 +100,8 @@ function Board(props) {
     height: calculateBoardWidth() / 2,
   }
 
-  return <div className="flex justify-center">
-    <div className="">
+  return <div className="lg:flex justify-center">
+    <div className="flex justify-center">
       <CustomBoard
         width={calculateBoardWidth()}
         position={fen}
@@ -92,16 +111,16 @@ function Board(props) {
       />
     </div>
 
-    {props.moves && <div className="w-2/12">
-      <p className="absolute w-2/12 p-2 mx-4"> Warm up your chess skills against this beginner level computer.</p>
-      <div className="scrollbar overflow-y-scroll" style={heightStyle}>
+    {props.moves && width > 1024 && <div className="lg:w-2/12">
+      <p className="absolute w-full lg:w-2/12 p-3 md:p-2 m-4 text-center lg:text-left"> Warm up your chess skills against this beginner level computer.</p>
+      <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
         <h1 className="px-2 mx-4 text-2xl">Moves</h1>
         <MoveHistory moveHistory={chess.pgn().split(' ')} />
       </div>
     </div>}
 
-    {props.sparePieces && <div className="w-2/12">
-        <button className="p-2 mx-8 rounded-lg bg-pink-400" style={marginStyle}>Calculate best move</button>
+    {props.sparePieces && <div className="text-center lg:text-left lg:w-2/12">
+        <button className="p-2 m-8 rounded-lg bg-pink-400" style={calculateMarginStyle()}>Calculate best move</button>
     </div>}
   </div>;
 }

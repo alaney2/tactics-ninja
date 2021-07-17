@@ -9,7 +9,7 @@ function Move(props) {
 function MoveList(props) {
   const moves = props.moves;
   return (
-    <div className="grid grid-cols-3 mx-6">
+    <div className="grid grid-cols-3 lg:mx-6">
       {
         moves.map(move => <Move move={move} />)
       }

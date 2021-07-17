@@ -7,7 +7,7 @@ function Play() {
     paddingTop: padding, 
   }
 
-  return <div style={style}>
+  return <div style={style} className="">
     <Board moves={true} sparePieces={false}/>
   </div>;
 }
