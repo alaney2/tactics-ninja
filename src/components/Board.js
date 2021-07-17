@@ -100,7 +100,7 @@ function Board(props) {
     height: calculateBoardWidth() / 2,
   }
 
-  return <div className="lg:flex justify-center">
+  return <div className="my-8 sm:my-0 lg:flex justify-center">
     <div className="flex justify-center">
       <CustomBoard
         width={calculateBoardWidth()}
