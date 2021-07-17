@@ -1,6 +1,6 @@
 import CustomBoard from './CustomBoard';
-// import Chessboard from 'chessboardjsx';
 import React, { useState } from 'react';
+import MoveHistory from './MoveHistory';
 const Chess = require("chess.js");
 
 function getWindowDimensions() {
@@ -19,14 +19,10 @@ function calculateBoardWidth() {
   } else {
     return width * 2 / 3;
   }
-
-  return getWindowDimensions().width > 648 ? getWindowDimensions().width * 2 / 5 : getWindowDimensions().width;
 }
 
 function Board(props) {
-  const [chess] = useState(
-    new Chess("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
-  );
+  const [chess] = useState(new Chess());
 
   const [fen, setFen] = useState(chess.fen());
 
@@ -60,7 +56,9 @@ function Board(props) {
       position={fen}
       onDrop={props.freePlay ? undefined : onDrop}
       sparePieces={props.sparePieces}
+      dropOffBoard={props.dropOffBoard}
     />
+    {props.moves && <MoveHistory moveHistory={chess.pgn().split(' ')} />}
   </div>;
 }
 

@@ -2,6 +2,7 @@ import Board from './Board';
 // import Chessboard from 'chessboardjsx';
 
 function Play() {
+  // document.getElementById('pad').style.padding = 0;
   return <div>
     <Board moves={true} sparePieces={false}/>
     {/* <Chessboard

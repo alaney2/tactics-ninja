@@ -2,7 +2,7 @@ import Board from './Board';
 
 function Analyze() {
   return <div>
-    <Board moves={true} sparePieces={true} freePlay={true}/>
+    <Board moves={false} sparePieces={true} freePlay={true} dropOffBoard={'trash'}/>
   </div>;
 }
 

@@ -8,7 +8,7 @@ import wB from '../resources/wB.svg';
 import wQ from '../resources/wQ.svg';
 import wK from '../resources/wK.svg';
 import bP from '../resources/bP.svg';
-import bR from '../resources/bP.svg';
+import bR from '../resources/bR.svg';
 import bN from '../resources/bN.svg';
 import bB from '../resources/bB.svg';
 import bQ from '../resources/bQ.svg';
@@ -20,6 +20,7 @@ function CustomBoard(props) {
       <div className="chessBoard">
       <ChessBoard
         sparePieces={props.sparePieces}
+        dropOffBoard={props.dropOffBoard}
         lightSquareStyle={{ backgroundColor: "Gray" }}
         darkSquareStyle={{ backgroundColor: "Black" }}
         width={props.width}
