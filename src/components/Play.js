@@ -1,19 +1,14 @@
 import Board from './Board';
-// import Chessboard from 'chessboardjsx';
+import { calculateBoardWidth } from './Board';
 
 function Play() {
-  // document.getElementById('pad').style.padding = 0;
-  return <div>
+  const padding = calculateBoardWidth() / 8;
+  const style = {
+    paddingTop: padding, 
+  }
+
+  return <div style={style}>
     <Board moves={true} sparePieces={false}/>
-    {/* <Chessboard
-          id="custom"
-          position="start"
-          width={320}
-          dropOffBoard="trash"
-          lightSquareStyle={{ backgroundColor: "#61dafb" }}
-          darkSquareStyle={{ backgroundColor: "#10a8c8" }}
-          onHoverSquareStyle={{ boxShadow: "inset 0 0 1px 100px orange" }}
-        /> */}
   </div>;
 }
 

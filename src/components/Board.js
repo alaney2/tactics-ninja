@@ -11,13 +11,13 @@ function getWindowDimensions() {
   };
 }
 
-function calculateBoardWidth() {
+export function calculateBoardWidth() {
   const width = getWindowDimensions().width;
   const height = getWindowDimensions().height;
   if (width > height) {
-    return height * 2 / 3;
+    return height * 3 / 5;
   } else {
-    return width * 2 / 3;
+    return width * 4 / 5;
   }
 }
 
