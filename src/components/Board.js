@@ -35,7 +35,7 @@ function Board(props) {
   const [chess] = useState(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'));
   const [fen, setFen] = useState(chess.fen());
   const [bestMoves, setBestMoves] = useState(' ');
-  const [setCp] = useState(0);
+  const [, setCp] = useState(0);
 
   const handleMove = (move) => {
     if (chess.move(move)) {
