@@ -46,8 +46,7 @@ function AnalysisBoard(props) {
   }
 
   const onDrop = (move) => {
-   setFen(chess.fen());
-   chess.put( {type: 'p', color: 'w' }, 'e5')
+   chess.put( {type: 'p', color: 'w' }, 'e5');
   };
 
   const margin = calculateBoardWidth() / 8;
@@ -116,8 +115,19 @@ function AnalysisBoard(props) {
       <form className="absolute lg:w-2/12 p-2 m-6 flex" style={{ marginTop: margin * 1.2 }}>
         <label for="fen" className="p-1">FEN: </label>
         <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
-        <QuestionMarkCircleIcon data-tip="FEN is a standard notation for describing a particular board position of a chess game" className="w-8"/>
-        <ReactTooltip effect="solid" type="dark" place="top" />
+        <QuestionMarkCircleIcon data-for="fen" className="w-8"/>
+        <ReactTooltip
+          getContent={(dataTip) => 
+            <div>
+              <p>FEN, i.e., Forsythe Edwards Notation, is used for describing a particular board position.</p>
+              <p>E.g., the starting position is 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'</p>
+            </div>
+          }
+          id="fen" 
+          effect="solid" 
+          type="dark" 
+          place="top" 
+        />
       </form>
 
       <button onClick={handleClick} type="submit" className="absolute lg:w-2/12 p-2 m-6 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}> Calculate best move </button>
