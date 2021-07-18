@@ -1,8 +1,8 @@
-import Board from './Board';
+import AnalysisBoard from './AnalysisBoard';
 
 function Analyze() {
   return <div>
-    <Board moves={false} sparePieces={true} dropOffBoard={'trash'}/>
+    <AnalysisBoard moves={false} sparePieces={true} dropOffBoard={'trash'}/>
   </div>;
 }
 

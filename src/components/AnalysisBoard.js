@@ -31,9 +31,10 @@ export function calculateBoardWidth() {
   }
 }
 
-function Board(props) {
+function AnalysisBoard(props) {
+  // Start position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   const [chess, setChess] = useState(new Chess());
-  const [fen, setFen] = useState(chess.fen());
+  const [fen, setFen] = useState('start');
   const [bestMoves, setBestMoves] = useState(' ');
   const [, setCp] = useState(0);
   const [value, setValue] = useState('');
@@ -42,28 +43,9 @@ function Board(props) {
     setValue(event.target.value);
   }
 
-  const handleMove = (move) => {
-    if (chess.move(move)) {
-      setTimeout(() => {
-        const moves = chess.moves();
-
-        if (moves.length > 0) {
-          const computerMove = moves[Math.floor(Math.random() * moves.length)];
-          chess.move(computerMove);
-          setFen(chess.fen());
-        }
-      }, 300);
-
-      setFen(chess.fen());
-    }
-  };
-
   const onDrop = (move) => {
-    handleMove({
-      from: move.sourceSquare,
-      to: move.targetSquare,
-      promotion: 'q',
-    })
+   setFen(chess.fen());
+   chess.put( {type: 'p', color: 'w' }, 'e5')
   };
 
   const margin = calculateBoardWidth() / 8;
@@ -122,7 +104,7 @@ function Board(props) {
       <CustomBoard
         width={calculateBoardWidth()}
         position={fen}
-        onDrop={props.sparePieces ? onDrop : onDrop}
+        onDrop={onDrop}
         sparePieces={props.sparePieces}
         dropOffBoard={props.dropOffBoard}
       />
@@ -151,4 +133,4 @@ function Board(props) {
   </div>;
 }
 
-export default Board;
+export default AnalysisBoard;
