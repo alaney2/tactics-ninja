@@ -120,7 +120,7 @@ function Board(props) {
     </div>}
 
     {props.sparePieces && <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4">
-        <button className="p-2 m-8 rounded-lg bg-pink-400" style={calculateMarginStyle()}>Calculate best move</button>
+        <button type="submit" className="p-2 m-8 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}>Calculate best move</button>
     </div>}
   </div>;
 }
