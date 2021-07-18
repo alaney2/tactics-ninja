@@ -1,7 +1,7 @@
 import CustomBoard from './CustomBoard';
 import React, { useState } from 'react';
 import MoveHistory from './MoveHistory';
-import './styles.css';
+import '../styles/styles.css';
 
 const Chess = require("chess.js");
 

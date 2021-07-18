@@ -1,7 +1,7 @@
 import CustomBoard from './CustomBoard';
 import React, { useState } from 'react';
 import MoveHistory from './MoveHistory';
-import './styles.css';
+import '../styles/styles.css';
 import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import ReactTooltip from 'react-tooltip';
 
@@ -115,7 +115,7 @@ function AnalysisBoard(props) {
       <form className="absolute lg:w-2/12 p-2 m-6 flex" style={{ marginTop: margin * 1.2 }}>
         <label for="fen" className="p-1">FEN: </label>
         <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
-        <QuestionMarkCircleIcon data-for="fen" className="w-8"/>
+        <QuestionMarkCircleIcon data-for="fen" data-tip="" className="w-8"/>
         <ReactTooltip
           getContent={(dataTip) => 
             <div>
