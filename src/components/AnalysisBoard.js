@@ -2,6 +2,8 @@ import CustomBoard from './CustomBoard';
 import React, { useState } from 'react';
 import MoveHistory from './MoveHistory';
 import './styles.css';
+import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
+import ReactTooltip from 'react-tooltip';
 
 const Chess = require("chess.js");
 
@@ -110,26 +112,21 @@ function AnalysisBoard(props) {
       />
     </div>
 
-    {props.moves && width > 1024 && <div className="lg:w-3/12 2xl:w-2/12 lg:mx-4">
-      <p className="absolute w-full lg:w-2/12 p-3 md:p-2 m-4 text-center lg:text-left"> Warm up your chess skills against this beginner level computer.</p>
-      <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
-        <h1 className="px-2 mx-4 text-2xl">Moves</h1>
-        <MoveHistory moveHistory={chess.pgn().split(' ')} />
-      </div>
-    </div>}
-
-    {props.sparePieces && <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4">
+    <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4">
       <form className="absolute lg:w-2/12 p-2 m-6 flex" style={{ marginTop: margin * 1.2 }}>
         <label for="fen" className="p-1">FEN: </label>
         <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
+        <QuestionMarkCircleIcon data-tip="FEN is a standard notation for describing a particular board position of a chess game" className="w-8"/>
+        <ReactTooltip effect="solid" type="dark" place="top" />
       </form>
+
       <button onClick={handleClick} type="submit" className="absolute lg:w-2/12 p-2 m-6 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}> Calculate best move </button>
 
       <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
         <h1 className="px-2 mx-4 text-2xl">Solution:</h1>
         <MoveHistory moveHistory={bestMoves.split(' ')} />
       </div>
-    </div>}
+    </div>
   </div>;
 }
 
