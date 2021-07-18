@@ -8,9 +8,6 @@ function App() {
       <header>
         <Navbar />
       </header>
-      {/* <body>
-        <Board />
-      </body> */}
     </div>
   );
 }

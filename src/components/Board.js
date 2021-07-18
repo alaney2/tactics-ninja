@@ -34,6 +34,8 @@ export function calculateBoardWidth() {
 function Board(props) {
   const [chess] = useState(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'));
   const [fen, setFen] = useState(chess.fen());
+  const [bestMoves, setBestMoves] = useState(' ');
+  const [cp, setCp] = useState(0);
 
   const handleMove = (move) => {
     if (chess.move(move)) {
@@ -90,6 +92,12 @@ function Board(props) {
 
   const calculateHeightStyle = () => {
     if (width >= 1024) {
+      if (props.sparePieces) {
+        return {
+          marginTop: heightStyle.marginTop + calculateBoardWidth() / 8,
+          height: heightStyle.height + calculateBoardWidth() / 8,
+        }
+      }
       return heightStyle;
     }
     return {};
@@ -98,6 +106,17 @@ function Board(props) {
   const heightStyle = {
     marginTop: calculateBoardWidth() / 2,
     height: calculateBoardWidth() / 2,
+  }
+
+  const handleClick = async () => {
+    const url = 'https://lichess.org/api/cloud-eval';
+    const response = await fetch(`${url}?fen=${fen}`);
+    const data = await response.json();
+    const position = data.pvs[0];
+    const cp = position.cp;
+    setBestMoves(position.moves);
+    setCp(cp);
+    console.log(position);
   }
 
   return <div className="my-8 sm:my-0 lg:flex justify-center">
@@ -120,7 +139,11 @@ function Board(props) {
     </div>}
 
     {props.sparePieces && <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4">
-        <button type="submit" className="p-2 m-8 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}>Calculate best move</button>
+        <button onClick={handleClick} type="submit" className="absolute lg:w-2/12 p-2 m-8 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}>Calculate best move</button>
+        <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
+        <h1 className="px-2 mx-4 text-2xl">Solution:</h1>
+        <MoveHistory moveHistory={bestMoves.split(' ')} />
+      </div>
     </div>}
   </div>;
 }
