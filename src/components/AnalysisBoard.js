@@ -52,6 +52,15 @@ function AnalysisBoard(props) {
 
   const margin = calculateBoardWidth() / 8;
   
+  const calculateFenMargin = () => {
+    if (width >= 1024) {
+      return {
+        marginTop: margin * 1.2
+      };
+    }
+    return {};
+  }
+
   const calculateMarginStyle = () => {
     if (width >= 1024) {
       return marginStyle;
@@ -111,8 +120,8 @@ function AnalysisBoard(props) {
       />
     </div>
 
-    <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4">
-      <form className="absolute lg:w-2/12 p-2 m-6 flex" style={{ marginTop: margin * 1.2 }}>
+    <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4 flex-col lg:flex-row">
+      <form className="lg:absolute lg:w-2/12 p-2 m-2 lg:m-6 flex justify-center lg:justify-left" style={calculateFenMargin()}>
         <label for="fen" className="p-1">FEN: </label>
         <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
         <QuestionMarkCircleIcon data-for="fen" data-tip="" className="w-8"/>
@@ -130,10 +139,10 @@ function AnalysisBoard(props) {
         />
       </form>
 
-      <button onClick={handleClick} type="submit" className="absolute lg:w-2/12 p-2 m-6 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}> Calculate best move </button>
+      <button onClick={handleClick} type="submit" className="lg:absolute lg:w-2/12 p-2 lg:m-6 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}> Calculate best move </button>
 
       <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
-        <h1 className="px-2 mx-4 text-2xl">Solution:</h1>
+        <h1 className="px-2 m-4 lg:mx-4 text-2xl">Solution:</h1>
         <MoveHistory moveHistory={bestMoves.split(' ')} />
       </div>
     </div>
