@@ -46,7 +46,8 @@ function AnalysisBoard(props) {
   }
 
   const onDrop = (move) => {
-   chess.put( {type: 'p', color: 'w' }, 'e5');
+   chess.put( {type: 'p', color: 'w' }, 'e4');
+   setFen(chess.fen());
   };
 
   const margin = calculateBoardWidth() / 8;
@@ -84,10 +85,8 @@ function AnalysisBoard(props) {
     setFen(value);
     chess.load(value);
     console.log(value);
-    setChess(new Chess(value));
-    console.log(fen);
     const url = 'https://lichess.org/api/cloud-eval';
-    try {
+    try {  
       const response = await fetch(`${url}?fen=${fen}`);
       const data = await response.json();
       const position = data.pvs[0];
@@ -97,6 +96,7 @@ function AnalysisBoard(props) {
       console.log(position);
     } catch (e) {
       console.log(e);
+      setFen('start');
     }
   }
 
