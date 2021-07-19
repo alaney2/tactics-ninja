@@ -109,7 +109,7 @@ function AnalysisBoard(props) {
     }
   }
 
-  return <div className="my-8 sm:my-0 lg:flex justify-center">
+  return <div className="sm:my-2 lg:flex justify-center">
     <div className="flex justify-center">
       <CustomBoard
         width={calculateBoardWidth()}
@@ -120,7 +120,7 @@ function AnalysisBoard(props) {
       />
     </div>
 
-    <div className="text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4 flex-col lg:flex-row">
+    <div className="invisible sm:visible text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4 flex-col lg:flex-row">
       <form className="lg:absolute lg:w-2/12 p-2 m-2 lg:m-6 flex justify-center lg:justify-left" style={calculateFenMargin()}>
         <label for="fen" className="p-1">FEN: </label>
         <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
