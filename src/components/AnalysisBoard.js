@@ -35,7 +35,7 @@ export function calculateBoardWidth() {
 
 function AnalysisBoard(props) {
   // Start position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  const [chess, setChess] = useState(new Chess());
+  const [chess] = useState(new Chess());
   const [fen, setFen] = useState('start');
   const [bestMoves, setBestMoves] = useState(' ');
   const [, setCp] = useState(0);
