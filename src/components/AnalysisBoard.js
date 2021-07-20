@@ -133,9 +133,9 @@ function AnalysisBoard(props) {
           sparePieces={props.sparePieces}
           dropOffBoard={props.dropOffBoard}
         />
-        <form className="flex justify-center mt-6 mb-4">
+        <form className="flex justify-center mt-4 lg:mt-6 mb-4">
           <label for="fen" className="p-1">FEN: </label>
-          <input type="text" name="fen" value={value} onChange={handleInputChange} className="line-clamp-1 p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
+          <input type="text" name="fen" value={value} onChange={handleInputChange} className="h-8 w-48 md:w-80 line-clamp-1 p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
           <QuestionMarkCircleIcon data-for="fen" data-tip="" className="w-8"/>
           <ReactTooltip
             getContent={(dataTip) => 
@@ -158,7 +158,7 @@ function AnalysisBoard(props) {
             />
             <span className="ml-3">to move</span>
           </label>
-          <button onClick={handleClick} type="submit" className="w-28 p-2 lg:mt-2 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
+          <button onClick={handleClick} type="submit" className="w-28 p-2 mr-3 lg:mt-2 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
         </div>
         {error && <p className="absolute lg:m-4 m-2 w-8/12 lg:w-auto text-center flex justify-center my-12 lg:my-60">Invalid position!</p>}
 
