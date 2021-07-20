@@ -4,6 +4,7 @@ import MoveHistory from './MoveHistory';
 import '../styles/styles.css';
 import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import ReactTooltip from 'react-tooltip';
+import Switch from "react-switch";
 
 const Chess = require("chess.js");
 
@@ -40,6 +41,8 @@ function AnalysisBoard(props) {
   const [bestMoves, setBestMoves] = useState(' ');
   const [, setCp] = useState(0);
   const [value, setValue] = useState('');
+  const [checked, setChecked] = useState(false);
+  const [turn, setTurn] = useState('w');
 
   const handleInputChange = (event) => {
     setValue(event.target.value);
@@ -93,6 +96,11 @@ function AnalysisBoard(props) {
     height: calculateBoardWidth() / 2,
   }
 
+  const setNewFen = () => {
+    const parts = fen.split(' ');
+    setFen(`${parts[0]} ${turn} ${parts[2]} ${parts[3]} ${parts[4]} ${parts[5]}`)
+  }
+
   const handleClick = async () => {
     const url = 'https://lichess.org/api/cloud-eval';
 
@@ -111,20 +119,23 @@ function AnalysisBoard(props) {
         console.log(e);
       }
     } else {
-      try {  
+      try {
+        setNewFen();
         const response = await fetch(`${url}?fen=${fen}`);
-        console.log(response);
-        console.log(fen);
         const data = await response.json();
         const position = data.pvs[0];
         const cp = position.cp;
         setBestMoves(position.moves);
         setCp(cp);
-        console.log(position);
       } catch (e) {
-        console.log(e + 'ELSE');
+        console.log(e);
       }
     }
+  }
+
+  const handleChange = (checked) => {
+    setChecked(checked);
+    setTurn('b');
   }
 
   return <div className="sm:my-2 lg:flex justify-center">
@@ -150,13 +161,16 @@ function AnalysisBoard(props) {
               <p>E.g., the starting position is 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'</p>
             </div>
           }
-          id="fen" 
-          effect="solid" 
-          type="dark" 
-          place="top" 
+          id="fen" effect="solid" type="dark" place="top" 
         />
       </form>
-
+      <label className="absolute flex items-center">
+        <Switch onChange={handleChange} checked={checked} 
+          offColor="#66D8D6" onColor="#f981c2" 
+          uncheckedIcon={false} checkedIcon={false} 
+        />
+        <span className="m-2">to move</span>
+      </label>
       <button onClick={handleClick} type="submit" className="lg:absolute lg:w-2/12 p-2 lg:m-6 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={calculateMarginStyle()}> Calculate best move </button>
 
       <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
