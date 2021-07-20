@@ -4,7 +4,9 @@
 
 @layer utilities {
   .bg-custom {
+    min-height: 100vh;
+    height: auto;
     background-color: #282c34;
-    height: 100vh;
+    width: 100%;
   }
 }

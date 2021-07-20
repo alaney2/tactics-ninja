@@ -36,7 +36,7 @@ export function calculateBoardWidth() {
 function AnalysisBoard(props) {
   // Start position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   const [chess] = useState(new Chess());
-  const [fen, setFen] = useState('start');
+  const [fen, setFen] = useState(chess.fen());
   const [bestMoves, setBestMoves] = useState(' ');
   const [, setCp] = useState(0);
   const [value, setValue] = useState('');
@@ -46,8 +46,11 @@ function AnalysisBoard(props) {
   }
 
   const onDrop = (move) => {
-   chess.put( {type: 'p', color: 'w' }, 'e4');
-   setFen(chess.fen());
+    if (move.sourceSquare !== move.targetSquare) {
+      chess.put( {type: move.piece.charAt(1), color: move.piece.charAt(0) }, move.targetSquare);
+      chess.remove(move.sourceSquare);
+      setFen(chess.fen());
+    }
   };
 
   const margin = calculateBoardWidth() / 8;
@@ -91,21 +94,36 @@ function AnalysisBoard(props) {
   }
 
   const handleClick = async () => {
-    setFen(value);
-    chess.load(value);
-    console.log(value);
     const url = 'https://lichess.org/api/cloud-eval';
-    try {  
-      const response = await fetch(`${url}?fen=${fen}`);
-      const data = await response.json();
-      const position = data.pvs[0];
-      const cp = position.cp;
-      setBestMoves(position.moves);
-      setCp(cp);
-      console.log(position);
-    } catch (e) {
-      console.log(e);
-      setFen('start');
+
+    if (value !== '') {
+      setFen(value);
+      chess.load(value);
+      try {  
+        const response = await fetch(`${url}?fen=${fen}`);
+        const data = await response.json();
+        const position = data.pvs[0];
+        const cp = position.cp;
+        setBestMoves(position.moves);
+        setCp(cp);
+        console.log(position);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {  
+        const response = await fetch(`${url}?fen=${fen}`);
+        console.log(response);
+        console.log(fen);
+        const data = await response.json();
+        const position = data.pvs[0];
+        const cp = position.cp;
+        setBestMoves(position.moves);
+        setCp(cp);
+        console.log(position);
+      } catch (e) {
+        console.log(e + 'ELSE');
+      }
     }
   }
 
@@ -120,7 +138,7 @@ function AnalysisBoard(props) {
       />
     </div>
 
-    <div className="invisible sm:visible text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4 flex-col lg:flex-row">
+    <div className="invisible md:visible text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4 flex-col lg:flex-row">
       <form className="lg:absolute lg:w-2/12 p-2 m-2 lg:m-6 flex justify-center lg:justify-left" style={calculateFenMargin()}>
         <label for="fen" className="p-1">FEN: </label>
         <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
