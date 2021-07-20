@@ -6,4 +6,4 @@ function Analyze() {
   </div>;
 }
 
-export default Analyze
+export default Analyze;

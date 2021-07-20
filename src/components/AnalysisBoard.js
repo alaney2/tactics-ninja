@@ -36,9 +36,9 @@ export function calculateBoardWidth() {
 
 function AnalysisBoard(props) {
   // Start position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-  const [chess] = useState(new Chess());
+  const [chess, setChess] = useState(new Chess());
   const [fen, setFen] = useState(chess.fen());
-  const [bestMoves, setBestMoves] = useState(' ');
+  const [bestMoves, setBestMoves] = useState('');
   const [, setCp] = useState(0);
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
@@ -57,46 +57,6 @@ function AnalysisBoard(props) {
     }
   };
 
-  const margin = calculateBoardWidth() / 8;
-  
-  const calculateFenMargin = () => {
-    if (width >= 1024) {
-      return {
-        marginTop: margin * 1.2
-      };
-    }
-    return {};
-  }
-
-  const calculateMarginStyle = () => {
-    if (width >= 1024) {
-      return marginStyle;
-    }
-    return {};
-  }
-
-  const marginStyle = {
-    marginTop: margin * 2, 
-  }
-
-  const calculateHeightStyle = () => {
-    if (width >= 1024) {
-      if (props.sparePieces) {
-        return {
-          marginTop: heightStyle.marginTop + calculateBoardWidth() / 8,
-          height: heightStyle.height + calculateBoardWidth() / 8,
-        }
-      }
-      return heightStyle;
-    }
-    return {};
-  }
-
-  const heightStyle = {
-    marginTop: calculateBoardWidth() / 2,
-    height: calculateBoardWidth() / 2,
-  }
-
   const setNewFen = () => {
     const parts = fen.split(' ');
     setFen(`${parts[0]} ${turn} ${parts[2]} ${parts[3]} ${parts[4]} ${parts[5]}`)
@@ -106,18 +66,24 @@ function AnalysisBoard(props) {
     const url = 'https://lichess.org/api/cloud-eval';
 
     if (value !== '') {
+      console.log(value);
       setFen(value);
       chess.load(value);
+      console.log(fen);
       try {
         const response = await fetch(`${url}?fen=${fen}`);
         const data = await response.json();
+        console.log(data);
         const position = data.pvs[0];
         const cp = position.cp;
+        console.log(position.moves);
         setBestMoves(position.moves);
         setError(false);
         setCp(cp);
       } catch (e) {
+        setBestMoves('');
         setError(true);
+        setCp(0);
         console.log(e);
       }
     } else {
@@ -131,7 +97,9 @@ function AnalysisBoard(props) {
         setError(false);
         setCp(cp);
       } catch (e) {
+        setBestMoves('');
         setError(true);
+        setCp(0);
         console.log(e);
       }
     }
@@ -142,9 +110,22 @@ function AnalysisBoard(props) {
     setTurn('b');
   }
 
-  return <div className="">
-    <div className="sm:my-2 lg:flex justify-center">
-      <div className="flex-col">
+  const formatBestMoves = () => {
+    if (bestMoves) {
+      const moves = bestMoves.split(' ');
+      let move = 1;
+      for (let i = 0; i < moves.length; i+=3) {
+        moves.splice(i, 0, `${move}.`);
+        move++;
+      }
+      return moves;
+    }
+    return [];
+  }
+
+  return <div className="sm:my-2 flex justify-center overflow-x-hidden">
+    <div className="lg:flex justify-center">
+      <div className="flex-col justify-center mx-8">
         <CustomBoard
           width={calculateBoardWidth()}
           position={fen}
@@ -152,7 +133,7 @@ function AnalysisBoard(props) {
           sparePieces={props.sparePieces}
           dropOffBoard={props.dropOffBoard}
         />
-        <form className="flex justify-center m-8">
+        <form className="flex justify-center mt-6 mb-4">
           <label for="fen" className="p-1">FEN: </label>
           <input type="text" name="fen" value={value} onChange={handleInputChange} className="p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
           <QuestionMarkCircleIcon data-for="fen" data-tip="" className="w-8"/>
@@ -168,21 +149,22 @@ function AnalysisBoard(props) {
         </form>
       </div>
 
-      <div className="invisible md:visible text-center lg:text-left lg:w-3/12 2xl:w-2/12 lg:mx-4 flex-col lg:flex-row">
-        
-        <label className="absolute flex items-center p-4 lg:m-2" style={{marginTop: margin * 2}}>
-          <Switch onChange={handleChange} checked={checked} 
-            offColor="#66D8D6" onColor="#f981c2" 
-            uncheckedIcon={false} checkedIcon={false} 
-          />
-          <span className="m-2">to move</span>
-        </label>
-        <button onClick={handleClick} type="submit" className="lg:absolute lg:w-1/12 p-2 lg:m-6 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700" style={{marginTop: margin * 3}}>Solve!</button>
-        
-        {error && <p className="absolute">Invalid position!</p>}
-        <div className="scrollbar overflow-auto" style={calculateHeightStyle()}>
-          <h1 className="px-2 m-4 lg:mx-4 text-2xl">Solution:</h1>
-          <MoveHistory moveHistory={bestMoves.split(' ')} />
+      <div className="flex-col">
+        <div className="flex justify-center lg:flex-col items-center lg:mt-44">
+          <label className="flex items-center p-4">
+            <Switch onChange={handleChange} checked={checked}
+              offColor="#66D8D6" onColor="#f981c2" 
+              uncheckedIcon={false} checkedIcon={false} 
+            />
+            <span className="ml-3">to move</span>
+          </label>
+          <button onClick={handleClick} type="submit" className="w-28 p-2 lg:mt-2 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
+        </div>
+        {error && <p className="absolute m-6">Invalid position!</p>}
+
+        <h1 className="px-2 m-2 text-2xl lg:mt-48">Solution:</h1>
+        <div className="scrollbar overflow-y-auto text-center lg:text-left ">
+          <MoveHistory moveHistory={formatBestMoves()} />
         </div>
       </div>
     </div>
