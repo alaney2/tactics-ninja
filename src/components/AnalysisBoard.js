@@ -133,10 +133,10 @@ function AnalysisBoard(props) {
           sparePieces={props.sparePieces}
           dropOffBoard={props.dropOffBoard}
         />
-        <form className="flex justify-center mt-4 lg:mt-6 mb-4">
+        <form className="flex justify-center items-center mt-4 lg:mt-6 mb-4">
           <label for="fen" className="p-1">FEN: </label>
-          <input type="text" name="fen" value={value} onChange={handleInputChange} className="h-8 w-48 md:w-80 line-clamp-1 p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-700" />
-          <QuestionMarkCircleIcon data-for="fen" data-tip="" className="w-8"/>
+          <input type="text" name="fen" value={value} onChange={handleInputChange} className="h-8 w-48 md:w-80 p-1 mx-2 outline-none bg-gray-300 rounded-lg text-gray-800" />
+          <QuestionMarkCircleIcon data-for="fen" data-tip="" className="w-6"/>
           <ReactTooltip
             getContent={(dataTip) => 
               <div>
