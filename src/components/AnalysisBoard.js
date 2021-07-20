@@ -162,7 +162,7 @@ function AnalysisBoard(props) {
         </div>
         {error && <p className="absolute m-6">Invalid position!</p>}
 
-        <h1 className="px-2 m-2 text-2xl lg:mt-48">Solution:</h1>
+        <h1 className="px-2 m-2 text-2xl lg:mt-48 text-center">Solution:</h1>
         <div className="scrollbar overflow-y-auto text-center lg:text-left ">
           <MoveHistory moveHistory={formatBestMoves()} />
         </div>

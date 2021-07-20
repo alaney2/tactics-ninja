@@ -72,9 +72,9 @@ function Board(props) {
       </div>
 
       <div className="flex-col">
-        <p className="lg:w-40 md:p-2 text-center lg:text-left lg:my-24"> Warm up your chess skills against this beginner level computer!</p>
+        <p className="text-sm sm:text-md lg:w-40 md:p-2 text-center lg:text-left lg:my-24"> Warm up your chess skills against this beginner level computer!</p>
 
-        <h1 className="px-4 m-2 mb-1 text-2xl lg:mt-48">Moves:</h1>
+        <h1 className="px-4 m-2 mb-1 text-2xl lg:mt-48 text-center">Moves:</h1>
         <div className="scrollbar overflow-y-auto text-center lg:text-left">
           <MoveHistory moveHistory={chess.pgn().split(' ')} />
         </div>
