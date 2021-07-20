@@ -150,7 +150,7 @@ function AnalysisBoard(props) {
       </div>
 
       <div className="flex-col">
-        <div className="flex justify-center lg:flex-col items-center lg:mt-44">
+        <div className="flex justify-center lg:flex-col items-center lg:mt-40">
           <label className="flex items-center p-4">
             <Switch onChange={handleChange} checked={checked}
               offColor="#66D8D6" onColor="#f981c2" 
@@ -162,7 +162,7 @@ function AnalysisBoard(props) {
         </div>
         {error && <p className="absolute m-6">Invalid position!</p>}
 
-        <h1 className="px-2 m-2 text-2xl lg:mt-48 text-center">Solution:</h1>
+        <h1 className="px-2 m-2 text-2xl lg:mt-48 text-center lg:text-left">Solution:</h1>
         <div className="scrollbar overflow-y-auto text-center lg:text-left ">
           <MoveHistory moveHistory={formatBestMoves()} />
         </div>
