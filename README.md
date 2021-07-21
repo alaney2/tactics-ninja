@@ -1,5 +1,7 @@
 <h1>Tactics Ninja</h1>
 
+## Built using Reactjs and TailwindCSS 
+
 <h2>Usage</h2>
 
 ```
