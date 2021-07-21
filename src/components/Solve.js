@@ -1,8 +1,11 @@
 function Solve() {
-  return <div>
-    <h1 className="text-4xl text-center p-8">
-      Coming later... TACTICS NINJA SHURIKEN TRAINER DOJO 3000
-    </h1>    
+  return <div className="grid grid-cols-1 md:grid-cols-4">
+    <div className="text-xl text-center p-8 md:col-start-2 col-span-2">
+      <h1>
+        Coming later... a tool where you can upload a photo of a real chess board for analysis!
+      </h1>
+    </div>
+    
   </div>;
 }
 
