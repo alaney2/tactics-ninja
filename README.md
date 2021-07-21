@@ -1,6 +1,6 @@
-## Tactics Ninja
+# Tactics Ninja
 
-#Usage
+##Usage
 
 git clone <this-repo>
 
