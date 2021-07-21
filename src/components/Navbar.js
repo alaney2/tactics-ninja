@@ -41,7 +41,7 @@ function Navbar(props) {
             <Analyze />
           </Route>
           <Route path="/">
-            <Play />
+            <Analyze />
           </Route>
         </Switch>
       </div>

@@ -3,7 +3,7 @@ import MoveList from './MoveList';
 
 function MoveHistory(props) {
   return (
-    <div className="h-28">
+    <div className="">
       <MoveList moves={props.moveHistory}/>
     </div>
   )
