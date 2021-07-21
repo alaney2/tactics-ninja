@@ -19,7 +19,8 @@ function Changelog(props) {
           <div className="my-4">
             <h2 className="text-md md:text-lg">July 19th, 2021</h2>
             <ul className="list-disc mx-8">
-              <li>Integrate Analysis tool with Lichess API</li>
+              <li>Integrate Analysis tool to query Lichess API</li>
+              <li>Add switch in Analysis tool to select turn</li>
               <li>Bug fixes and styling</li>
             </ul>
           </div>
