@@ -194,7 +194,7 @@ function AnalysisBoard(props) {
             />
             <span className="ml-3">to move</span>
           </label>
-          <button onClick={handleClick} type="submit" className="text-lg w-28 p-2 lg:mt-48 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
+          <button onClick={handleClick} type="submit" className="text-lg w-28 p-1 lg:p-2 lg:mt-48 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
         </div>
         
         <h1 className="text-xl lg:mt-6 text-center lg:text-left mx-8">Solution:</h1>

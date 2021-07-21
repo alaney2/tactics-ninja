@@ -2,7 +2,7 @@ import React from 'react';
 
 function Move(props) {
   return (
-    <p className="my-1 text-center">{props.move}</p>
+    <p className="my-1 text-left lg:text-center">{props.move}</p>
   )
 }
 

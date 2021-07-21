@@ -75,7 +75,7 @@ function Board(props) {
         <p className="text-sm sm:text-lg py-2 lg:w-40 text-center lg:text-left lg:mt-4 lg:mx-8">Drag and drop!</p>
 
         <h1 className= "lg:mx-8 text-xl mt-4 lg:mt-64 text-center lg:text-left">Moves:</h1>
-        <div className="scrollbar lg:w-72 h-28 lg:h-64 overflow-y-auto">
+        <div className="scrollbar lg:w-72 h-24 lg:h-64 overflow-y-auto">
           <MoveHistory moveHistory={chess.pgn().split(' ')} />
         </div>
       </div>
