@@ -5,6 +5,8 @@ import '../styles/styles.css';
 import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 import ReactTooltip from 'react-tooltip';
 import Switch from "react-switch";
+import king from '../resources/king.png';
+import trash from '../resources/trash.png';
 
 const Chess = require("chess.js");
 
@@ -37,7 +39,7 @@ export function calculateBoardWidth() {
 function AnalysisBoard(props) {
   // Start position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
   const [chess] = useState(new Chess());
-  const [fen, setFen] = useState(chess.fen());
+  const [, setFen] = useState(chess.fen());
   const [bestMoves, setBestMoves] = useState('');
   const [, setCp] = useState(0);
   const [value, setValue] = useState('');
@@ -58,18 +60,17 @@ function AnalysisBoard(props) {
   };
 
   const setNewFen = () => {
-    const parts = fen.split(' ');
-    setFen(`${parts[0]} ${turn} ${parts[2]} ${parts[3]} ${parts[4]} ${parts[5]}`)
+    const parts = chess.fen().split(' ');
+    const newFen = `${parts[0]} ${turn} ${parts[2]} ${parts[3]} ${parts[4]} ${parts[5]}`;
+    chess.load(newFen);
   }
 
   const handleClick = async () => {
     const url = 'https://lichess.org/api/cloud-eval';
 
     if (value !== '') {
-      console.log(value);
       setFen(value);
       chess.load(value);
-      console.log(fen);
       try {
         const response = await fetch(`${url}?fen=${value}`);
         const data = await response.json();
@@ -89,7 +90,10 @@ function AnalysisBoard(props) {
     } else {
       try {
         setNewFen();
-        const response = await fetch(`${url}?fen=${fen}`);
+        console.log(chess.fen());
+        console.log(turn);
+
+        const response = await fetch(`${url}?fen=${chess.fen()}`);
         const data = await response.json();
         const position = data.pvs[0];
         const cp = position.cp;
@@ -107,7 +111,27 @@ function AnalysisBoard(props) {
 
   const handleChange = (checked) => {
     setChecked(checked);
-    setTurn('b');
+    if (checked) {
+      setTurn('b');
+    } else {
+      setTurn('w');
+    }
+  }
+
+  const newBoard = () => {
+    chess.reset();
+    setFen(chess.fen());
+    setBestMoves('');
+    setError(false);
+    setCp(0);
+  }
+
+  const clearBoard = () => {
+    chess.clear();
+    setFen(chess.fen());
+    setBestMoves('');
+    setError(false);
+    setCp(0);
   }
 
   const formatBestMoves = () => {
@@ -125,10 +149,10 @@ function AnalysisBoard(props) {
 
   return <div className="sm:my-2 flex justify-center overflow-x-hidden">
     <div className="lg:flex justify-center">
-      <div className="flex-col justify-center mx-8">
+      <div className="flex-col justify-center">
         <CustomBoard
           width={calculateBoardWidth()}
-          position={fen}
+          position={chess.fen()}
           onDrop={onDrop}
           sparePieces={props.sparePieces}
           dropOffBoard={props.dropOffBoard}
@@ -150,20 +174,32 @@ function AnalysisBoard(props) {
       </div>
 
       <div className="flex-col">
-        <div className="flex justify-center lg:flex-col items-center lg:mt-40">
-          <label className="flex items-center p-4">
+        <div className="flex justify-center lg:flex-col lg:mt-20 mx-8">
+          <button onClick={clearBoard} className="flex items-center mx-2">
+            <img src={trash} alt="Clear board" loading="lazy"></img>
+            <span className="ml-1">Clear board</span>
+          </button>
+
+          <button onClick={newBoard} className="flex items-center m-2">
+            <img src={king} alt="New board" loading="lazy"></img>
+            <span className="ml-1">New board</span>
+          </button>
+        </div>
+
+        <div className="flex justify-center lg:flex-col my-4 mx-8">
+          <label className="flex items-center p-2">
             <Switch onChange={handleChange} checked={checked}
               offColor="#66D8D6" onColor="#f981c2" 
               uncheckedIcon={false} checkedIcon={false} 
             />
             <span className="ml-3">to move</span>
           </label>
-          <button onClick={handleClick} type="submit" className="w-28 p-2 mr-3 lg:mt-2 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
+          <button onClick={handleClick} type="submit" className="text-lg w-28 p-2 lg:mt-48 rounded-lg bg-pink-400 focus:bg-pink-500 focus:ring-2 focus:outline-none focus:ring-pink-700">Solve!</button>  
         </div>
-        {error && <p className="absolute lg:m-4 m-2 w-8/12 lg:w-auto text-center flex justify-center my-12 lg:my-60">Invalid position!</p>}
-
-        <h1 className="px-2 m-2 text-2xl lg:mt-48 text-center lg:text-left">Solution:</h1>
-        <div className="scrollbar overflow-y-auto text-center lg:text-left ">
+        
+        <h1 className="text-xl lg:mt-6 text-center lg:text-left mx-8">Solution:</h1>
+        {error && <p className="absolute mx-8 my-4 w-8/12 lg:w-auto text-center flex justify-center">Invalid position!</p>}
+        <div className="scrollbar lg:w-72 overflow-y-auto h-28">
           <MoveHistory moveHistory={formatBestMoves()} />
         </div>
       </div>

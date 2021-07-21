@@ -61,7 +61,7 @@ function Board(props) {
 
   return <div className="sm:my-2 flex justify-center overflow-x-hidden">
     <div className="lg:flex justify-center">
-      <div className="flex justify-center mx-8">
+      <div className="flex justify-center">
         <CustomBoard
           width={calculateBoardWidth()}
           position={fen}
@@ -71,11 +71,11 @@ function Board(props) {
         />
       </div>
 
-      <div className="flex-col">
-        <p className="text-sm sm:text-md p-8 lg:w-40 md:p-2 text-center lg:text-left lg:my-24"> Warm up your chess skills against this white belt!</p>
+      <div className="flex-col items-center justify-center">
+        <p className="text-sm sm:text-lg py-2 lg:w-40 text-center lg:text-left lg:mt-4 lg:mx-8">Drag and drop!</p>
 
-        <h1 className="px-2 mx-2 mb-1 text-2xl lg:mt-52 text-center lg:text-left">Moves:</h1>
-        <div className="scrollbar overflow-y-auto text-center lg:text-left">
+        <h1 className= "lg:mx-8 text-xl mt-4 lg:mt-64 text-center lg:text-left">Moves:</h1>
+        <div className="scrollbar lg:w-72 h-28 lg:h-64 overflow-y-auto">
           <MoveHistory moveHistory={chess.pgn().split(' ')} />
         </div>
       </div>
