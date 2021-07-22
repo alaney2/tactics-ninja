@@ -175,12 +175,12 @@ function AnalysisBoard(props) {
 
       <div className="flex-col">
         <div className="flex justify-center lg:flex-col lg:mt-20 mx-8">
-          <button onClick={clearBoard} className="flex items-center mx-2">
+          <button onClick={clearBoard} className="flex items-center mx-2 hover:text-gray-300">
             <img src={trash} alt="Clear board" loading="lazy"></img>
             <span className="ml-1">Clear board</span>
           </button>
 
-          <button onClick={newBoard} className="flex items-center m-2">
+          <button onClick={newBoard} className="flex items-center m-2 hover:text-gray-300">
             <img src={king} alt="New board" loading="lazy"></img>
             <span className="ml-1">New board</span>
           </button>
@@ -192,7 +192,6 @@ function AnalysisBoard(props) {
               offColor="#66D8D6" onColor="#f981c2"
               offHandleColor="#a4f5f2" onHandleColor="#f5bada"
               uncheckedIcon={false} checkedIcon={false}
-              className="focus:outline-none"
             />
             <span className="ml-3">to move</span>
           </label>

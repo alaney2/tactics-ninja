@@ -94,7 +94,7 @@ function Board(props) {
 
       <div className="flex-col items-center justify-center">
         <p className="text-sm sm:text-lg py-2 lg:w-40 text-center lg:text-left lg:mt-4 lg:mx-8">Drag and drop!</p>
-        <button onClick={newBoard} className="flex items-center m-4 mx-8">
+        <button onClick={newBoard} className="flex items-center m-4 mx-8 hover:text-gray-300">
           <img src={king} alt="New game" loading="lazy"></img>
           <span className="ml-1">New game</span>
         </button>
