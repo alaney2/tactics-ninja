@@ -10,7 +10,8 @@ function Changelog(props) {
           <div className="mt-8 my-4">
             <h2 className="text-md md:text-lg">July 21st, 2021</h2>
             <ul className="list-disc mx-8">
-              <li>Minor fixes</li>
+              <li>Add text when game reaches checkmate, draw, or stalemate position</li>
+              <li>Add <i>New game</i> button</li>
               <li>Minor fixes</li>
             </ul>
           </div>
