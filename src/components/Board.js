@@ -2,6 +2,7 @@ import CustomBoard from './CustomBoard';
 import React, { useState } from 'react';
 import MoveHistory from './MoveHistory';
 import '../styles/styles.css';
+import king from '../resources/king.png';
 
 const Chess = require("chess.js");
 
@@ -59,6 +60,11 @@ function Board(props) {
     })
   };
 
+  const newBoard = () => {
+    chess.reset();
+    setFen(chess.fen());
+  }
+
   return <div className="sm:my-2 flex justify-center">
     <div className="lg:flex justify-center">
       <div className="flex justify-center">
@@ -73,8 +79,11 @@ function Board(props) {
 
       <div className="flex-col items-center justify-center">
         <p className="text-sm sm:text-lg py-2 lg:w-40 text-center lg:text-left lg:mt-4 lg:mx-8">Drag and drop!</p>
-
-        <h1 className= "lg:mx-8 text-xl mt-4 lg:mt-64 text-center lg:text-left">Moves:</h1>
+        <button onClick={newBoard} className="flex items-center m-4 mx-8">
+            <img src={king} alt="New board" loading="lazy"></img>
+            <span className="ml-1">New board</span>
+          </button>
+        <h1 className= "lg:mx-8 text-xl mt-4 lg:mt-56 text-center lg:text-left">Moves:</h1>
         <div className="scrollbar lg:w-72 h-24 lg:h-64 overflow-y-auto">
           <MoveHistory moveHistory={chess.pgn().split(' ')} />
         </div>

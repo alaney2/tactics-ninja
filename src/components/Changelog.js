@@ -8,6 +8,14 @@ function Changelog(props) {
         <a href="https://github.com/alaney2/tactics-ninja" target="_blank" rel="noreferrer noopener" className="py-4 text-xl hover:text-pink-400 md:col-start-2 col-span-2">alaney2/tactics-ninja</a>
         <div className="">
           <div className="mt-8 my-4">
+            <h2 className="text-md md:text-lg">July 21st, 2021</h2>
+            <ul className="list-disc mx-8">
+              <li>Minor fixes</li>
+              <li>Minor fixes</li>
+            </ul>
+          </div>
+
+          <div className="mt-8 my-4">
             <h2 className="text-md md:text-lg">July 20th, 2021</h2>
             <ul className="list-disc mx-8">
               <li>Update changelog</li>
