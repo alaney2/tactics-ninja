@@ -59,7 +59,7 @@ function Board(props) {
     })
   };
 
-  return <div className="sm:my-2 flex justify-center overflow-x-hidden">
+  return <div className="sm:my-2 flex justify-center">
     <div className="lg:flex justify-center">
       <div className="flex justify-center">
         <CustomBoard

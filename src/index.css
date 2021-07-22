@@ -10,3 +10,8 @@
     width: 100%;
   }
 }
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

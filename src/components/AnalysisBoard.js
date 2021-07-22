@@ -147,7 +147,7 @@ function AnalysisBoard(props) {
     return [];
   }
 
-  return <div className="sm:my-2 flex justify-center overflow-x-hidden">
+  return <div className="sm:my-2 flex justify-center">
     <div className="lg:flex justify-center">
       <div className="flex-col justify-center">
         <CustomBoard
