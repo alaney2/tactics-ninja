@@ -5,7 +5,7 @@ function Changelog(props) {
     <div className="text-sm md:text-lg sm:px-24 md:px-0 md:py-8 grid grid-cols-1 md:grid-cols-4">
       <div className="md:col-start-2 col-span-2 rounded-lg shadow-2xl bg-gray-700 p-8 lg:px-16">
         <p className="text-xl">Feel free to fork this repository and make your own changes!</p>
-        <a href="https://github.com/alaney2/tactics-ninja" className="py-4 text-xl hover:text-pink-400 md:col-start-2 col-span-2">alaney2/tactics-ninja</a>
+        <a href="https://github.com/alaney2/tactics-ninja" target="_blank" rel="noreferrer noopener" className="py-4 text-xl hover:text-pink-400 md:col-start-2 col-span-2">alaney2/tactics-ninja</a>
         <div className="">
           <div className="mt-8 my-4">
             <h2 className="text-md md:text-lg">July 20th, 2021</h2>
