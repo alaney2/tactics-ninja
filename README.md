@@ -1,8 +1,8 @@
-<h1>Tactics Ninja</h1>
+# [Tactics Ninja](https://tactics.ninja)
 
 ### Built using Reactjs and TailwindCSS 
 
-<h2>Usage</h2>
+## Usage
 
 ```
 git clone <this-repo>
