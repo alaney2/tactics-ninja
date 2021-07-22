@@ -1,5 +1,5 @@
 <h1>
-  <a href="https://tactics.ninja" target="_blank" rel="noreferrer noopener">Tactics Ninja</a>
+  <a href="https://tactics.ninja" target="_blank">Tactics Ninja</a>
 </h1>
 
 ### Built using Reactjs and TailwindCSS 
