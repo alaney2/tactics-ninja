@@ -1,6 +1,4 @@
-<h1>
-  <a href="https://tactics.ninja" target="_blank">Tactics Ninja</a>
-</h1>
+# [Tactics Ninja](https://tactics.ninja)
 
 ### Built using Reactjs and TailwindCSS 
 
