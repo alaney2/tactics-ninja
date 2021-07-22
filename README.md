@@ -1,4 +1,4 @@
-# [Tactics Ninja](www.tactics.ninja)
+# [Tactics Ninja](https://www.tactics.ninja)
 
 ### Built using Reactjs and TailwindCSS 
 
