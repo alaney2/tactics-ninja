@@ -35,6 +35,9 @@ export function calculateBoardWidth() {
 function Board(props) {
   const [chess, ] = useState(new Chess());
   const [fen, setFen] = useState(chess.fen());
+  const [checkmate, setCheckmate] = useState(false);
+  const [draw, setDraw] = useState(false);
+  const [stalemate, setStalemate] = useState(false);
 
   const handleMove = (move) => {
     if (chess.move(move)) {
@@ -50,6 +53,15 @@ function Board(props) {
 
       setFen(chess.fen());
     }
+    if (chess.in_checkmate()) {
+      setCheckmate(true);
+    }
+    if (chess.in_draw() || chess.in_threefold_repetition()) {
+      setDraw(true);
+    }
+    if (chess.in_stalemate()) {
+      setStalemate(true);
+    }
   };
 
   const onDrop = (move) => {
@@ -63,6 +75,9 @@ function Board(props) {
   const newBoard = () => {
     chess.reset();
     setFen(chess.fen());
+    setCheckmate(false);
+    setDraw(false);
+    setStalemate(false);
   }
 
   return <div className="sm:my-2 flex justify-center">
@@ -80,9 +95,14 @@ function Board(props) {
       <div className="flex-col items-center justify-center">
         <p className="text-sm sm:text-lg py-2 lg:w-40 text-center lg:text-left lg:mt-4 lg:mx-8">Drag and drop!</p>
         <button onClick={newBoard} className="flex items-center m-4 mx-8">
-            <img src={king} alt="New board" loading="lazy"></img>
-            <span className="ml-1">New board</span>
-          </button>
+          <img src={king} alt="New game" loading="lazy"></img>
+          <span className="ml-1">New game</span>
+        </button>
+        <div className="absolute m-8 my-36">
+          {checkmate && <p>Checkmate!</p>}
+          {draw && <p>Draw!</p>}
+          {stalemate && <p>Stalemate!</p>}
+        </div>
         <h1 className= "lg:mx-8 text-xl mt-4 lg:mt-56 text-center lg:text-left">Moves:</h1>
         <div className="scrollbar lg:w-72 h-24 lg:h-64 overflow-y-auto">
           <MoveHistory moveHistory={chess.pgn().split(' ')} />
