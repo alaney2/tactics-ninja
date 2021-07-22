@@ -189,8 +189,10 @@ function AnalysisBoard(props) {
         <div className="flex justify-center lg:flex-col my-4 mx-8">
           <label className="flex items-center p-2">
             <Switch onChange={handleChange} checked={checked}
-              offColor="#66D8D6" onColor="#f981c2" 
-              uncheckedIcon={false} checkedIcon={false} 
+              offColor="#66D8D6" onColor="#f981c2"
+              offHandleColor="#a4f5f2" onHandleColor="#f5bada"
+              uncheckedIcon={false} checkedIcon={false}
+              className="focus:outline-none"
             />
             <span className="ml-3">to move</span>
           </label>
