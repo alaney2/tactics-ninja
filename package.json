@@ -1,5 +1,7 @@
 {
   "name": "tactics-ninja",
+  "author": "Alan Yao",
+  "description": "Cool project for fun",
   "version": "0.1.0",
   "private": true,
   "engine": {
