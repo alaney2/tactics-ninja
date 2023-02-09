@@ -158,9 +158,6 @@ function CustomBoard(props) {
         }}
       />
       </div>
-      {/* <div className="moveHistory">
-        <MoveHistory moveHistory={props.moveHistory} />
-      </div> */}
     </div>
   );
 }
