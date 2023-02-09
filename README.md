@@ -1,4 +1,4 @@
-# [Tactics Ninja](https://tactics.ninja)
+# [Tactics Ninja](https://tactics-ninja.vercel.app/)
 
 ### Built using Reactjs and TailwindCSS 
 
