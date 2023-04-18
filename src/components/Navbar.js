@@ -34,11 +34,11 @@ function Navbar(props) {
           <Route path="/changelog">
             <Changelog />
           </Route>
-          <Route path="/solve">
-            <Solve />
-          </Route>
           <Route path="/analyze">
             <Analyze />
+          </Route>
+          <Route path="/solve">
+            <Solve />
           </Route>
           <Route path="/">
             <Play />
